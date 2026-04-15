@@ -22,7 +22,7 @@ No lugar disso, surge uma camada chamada **Container Runtime** (como o Docker), 
 
 Essa abordagem reduz significativamente o consumo de recursos, pois elimina a sobrecarga de múltiplos sistemas operacionais.
 
-### Por que usar containers?
+## Por que usar containers?
 
 Sem containers, aplicações costumam gerar problemas como:
 
