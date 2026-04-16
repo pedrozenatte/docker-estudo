@@ -39,6 +39,7 @@ O container inicia e termina imediatamente.
 #### 2) Executar um comando simples
 
 - docker run ubuntu echo "Pedro Zenatte"  
+- docker exec -it 'nome/id' apt update
 
 ---
 

@@ -141,10 +141,14 @@ Parada imediata:
 ---
 
 16) Voltar para um container:
-
+**Parado:**
 - docker start -ai 'nome ou id'  
 
 OBS: `-a` conecta ao terminal, `-i` mantém interação.
+
+**Rodando:**
+Se o container está em segundo plano, para acessar ele no terminal e de forma interativa:
+- docker exec -it nome bash
 
 ---
 
@@ -164,6 +168,14 @@ Imagine que entramos no ubuntu (modo iterativo), instalamos python e saímos. Es
 
 18) Excluir várias imagens de uma vez:
 - docker rmi $(docker images -q)
+
+---
+
+19) Executar um comando específico em um docker que está em segundo plano: 
+- docker exec nome apt update
+
+**Para saídas mais complexas:**
+- docker exec -it nome apt update
 
 ---
 
