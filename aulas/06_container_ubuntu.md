@@ -1,27 +1,58 @@
 # Container Ubuntu
 
-##### Pode surgir um questionamento: Quando executamos o container hello-world, ele rodou e parou, logo, é assim que o container funciona? 
-Na realidade os containers executam o que tem que executar e depois eles morrem. No caso do hello-world, ele apenas mostrou isso na tela.
+##### Pode surgir um questionamento: quando executamos o container `hello-world`, ele roda e para. Então é assim que containers funcionam?
 
-##### Mas quem determina o funcionamento de um container? 
-São as imagens de um container, a qual possui um passo a passo do que será executado.
+Sim, esse é o comportamento padrão.  
+Um container executa um **processo principal** e, quando esse processo termina, o container é encerrado.
 
-### Vamos executar um container que possui a imagem de um SO.
-#### Comandos
-1) Rodar a imagem do ubuntu (inicialmente ele procura no repositório local, senão busca no dockerhub)
-- docker run ubuntu
+No caso do `hello-world`, ele apenas executa um comando que imprime uma mensagem na tela e finaliza.
 
-OBS: Ue, mas não aconteceu nada. 
-Exatamente, pois não pedimos para o ubuntu fazer nada. 
+##### Mas quem determina o funcionamento de um container?
 
-2) Escrever na tela: 
-docker run ubuntu echo "Pedro Zenatte"
+Quem define isso é a **imagem do container**.
 
-3) Listar diretórios:
-docker run ubuntu ls
+A imagem contém:
+- Um sistema base (ex: Ubuntu)
+- Bibliotecas e dependências
+- Um comando padrão a ser executado
 
-##### Mas vamos executar comando a comando TODAS as vezes? 
-NÃO, podemos utilizar o modo interativo
+Ou seja, ela define **o que será executado quando o container iniciar**.
+
+---
+
+## Executando um container com a imagem do Ubuntu
+
+#### 1) Rodar a imagem do Ubuntu
+
+- docker run ubuntu  
+
+OBS:  
+O Docker primeiro procura a imagem localmente.  
+Caso não encontre, ele baixa do Docker Hub.
+
+Pergunta: "Mas não aconteceu nada?"  
+Resposta: Sim — porque nenhum comando foi especificado.  
+O container inicia e termina imediatamente.
+
+---
+
+#### 2) Executar um comando simples
+
+- docker run ubuntu echo "Pedro Zenatte"  
+
+---
+
+#### 3) Listar diretórios
+
+- docker run ubuntu ls  
+
+---
+
+##### Vamos executar comandos toda vez assim?
+
+Não. Para isso existe o **modo interativo**, que permite trabalhar dentro do container.
+
+---
 
 ### Modo interativo do Docker
 O modo interativo do Docker (na prática, trabalhar com containers interativos) é quando você roda um container e interage com ele em tempo real, como se fosse um terminal de outro sistema.
@@ -47,11 +78,23 @@ OBS: As flags
 - -t: terminal
 - -a: atach (conectar)
 
-##### Para dar nome ao container: 
-- docker run --name 'nome' -it ubuntu
+Assim, conseguimos utilizar o container como se fosse um ambiente isolado semelhante a um sistema operacional.
 
-##### Como deixar o container rodando em background:
-- docker run -di ubuntu
-- docker run -dit ubuntu
+Importante:  
+Apesar da aparência, o container **não é um sistema operacional completo**, pois compartilha o kernel do host.
 
-OBS: O -d significa detached, ou seja, roda o container em segundo plano (não entramos nele, o terminal volta imediatamente)
+---
+
+### Nomeando um container
+
+- docker run --name nome -it ubuntu  
+
+---
+
+### Executando em background
+
+- docker run -d ubuntu  
+- docker run -dit ubuntu  
+
+OBS:  
+`-d` (detached) executa o container em segundo plano, liberando o terminal imediatamente.
