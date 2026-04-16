@@ -11,8 +11,12 @@ OBS: "service docker 'ação'" é a maneira antiga. Hoje, utiliza-se "systemctl 
 
 ---
 
-2) Como iniciar o docker (caso esteja desligado):
+2) Como iniciar o docker (caso esteja desligado) e um container:
 - sudo systemctl start docker
+
+- sudo run 'imagem'
+
+OBS: O run cria o container e acessa fazendo algo. 
 
 ---
 
@@ -74,7 +78,10 @@ OBS: latest é a TAG da imagem.
 
 11) Criar container e modo iterativo:
 - docker run -it ubuntu
+Com nome específico para o container:
+- docker run --name 'nome' -it ubuntu
 
+OBS: Perceba que basta utilizar a flag --name 'nome'
 ---
 
 12) Transformar uma imagem: 
@@ -85,5 +92,9 @@ OBS: O nome pode seguir esse formato --> nome:tag, como meu_ubuntu:v1
 
 ---
 
-12) Voltar para um container: 
+13) Voltar para um container: 
 - docker start -ai 'nome ou id container'
+
+14) Deixar um container em backgroud:
+- docker run -di ubuntu
+- docker run -dit ubuntu

@@ -6,7 +6,7 @@ Na realidade os containers executam o que tem que executar e depois eles morrem.
 ##### Mas quem determina o funcionamento de um container? 
 São as imagens de um container, a qual possui um passo a passo do que será executado.
 
-## Vamos executar um container que possui a imagem de um SO.
+### Vamos executar um container que possui a imagem de um SO.
 #### Comandos
 1) Rodar a imagem do ubuntu (inicialmente ele procura no repositório local, senão busca no dockerhub)
 - docker run ubuntu
@@ -21,13 +21,13 @@ docker run ubuntu echo "Pedro Zenatte"
 docker run ubuntu ls
 
 ##### Mas vamos executar comando a comando TODAS as vezes? 
-NÃO, podemos utilizar o modo iterativo
+NÃO, podemos utilizar o modo interativo
 
-## Modo iterativo do Docker
-O modo iterativo do Docker (na prática, trabalhar com containers interativos) é quando você roda um container e interage com ele em tempo real, como se fosse um terminal de outro sistema.
+### Modo interativo do Docker
+O modo interativo do Docker (na prática, trabalhar com containers interativos) é quando você roda um container e interage com ele em tempo real, como se fosse um terminal de outro sistema.
 
 Normalmente, containers são usados para rodar algo e terminar (ex: hello-world).
-No modo iterativo/interativo, podemos:
+No modo interativo, podemos:
 
 - entrar dentro do container
 - executar comandos manualmente
@@ -42,3 +42,16 @@ outra forma, flags juntas
 
 Assim, podemos utilizar como se fosse literalmente um novo SO. 
 
+OBS: As flags 
+- -i: interactive
+- -t: terminal
+- -a: atach (conectar)
+
+##### Para dar nome ao container: 
+- docker run --name 'nome' -it ubuntu
+
+##### Como deixar o container rodando em background:
+- docker run -di ubuntu
+- docker run -dit ubuntu
+
+OBS: O -d significa detached, ou seja, roda o container em segundo plano (não entramos nele, o terminal volta imediatamente)
