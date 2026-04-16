@@ -71,3 +71,9 @@ Com 4 VMs, teremos aproximadamente:
 
 - Alto custo de **manutenção** (atualizações, segurança, configuração)
 - Maior complexidade de gerenciamento
+
+
+
+
+
+LINK DA PLAYLIST: https://www.youtube.com/playlist?list=PLViOsriojeLrdw5VByn96gphHFxqH3O_N
