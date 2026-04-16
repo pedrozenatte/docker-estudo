@@ -23,6 +23,8 @@ Ou seja:
 > Imagem = projeto  
 > Container = aplicação rodando 
 
+A imagem, é o projeto pronto da aplicação, então ela já contém o sistema base (como um linux minimalista), o software (por exemplo PostgreSQL) e as configurações necessárias para rodar. 
+
 ### Mas afinal, como é a arquitetura do docker? 
 
 ![Arquitetura Docker](../imagens/arquitetura_docker.png)
