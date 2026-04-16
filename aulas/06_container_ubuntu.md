@@ -87,7 +87,9 @@ Apesar da aparência, o container **não é um sistema operacional completo**, p
 
 ### Nomeando um container
 
-- docker run --name nome -it ubuntu  
+- docker run --name 'nome' -it ubuntu  
+
+OBS: A flag --name 'nome' não precisa estar no meio, pode ser ao final
 
 ---
 
