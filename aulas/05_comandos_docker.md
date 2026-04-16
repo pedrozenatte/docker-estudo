@@ -98,3 +98,11 @@ OBS: O nome pode seguir esse formato --> nome:tag, como meu_ubuntu:v1
 14) Deixar um container em backgroud:
 - docker run -di ubuntu
 - docker run -dit ubuntu
+
+15) Parar um container:
+- docker stop 'nome ou id do container'
+Colocar tempo para parar:
+- docker stop -t 0 'nome/id'
+
+16) Parar um container e excluir o container imediatamente:
+- docker rm -f 'nome/id'
