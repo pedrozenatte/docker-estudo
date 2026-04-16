@@ -124,3 +124,9 @@ Para remover, o container precisa estar parado.
 create → running → (paused / stopped) → running → stopped → delete
 
 ---
+
+## Observação importante
+
+Containers são projetados para serem **efêmeros**:
+- Podem ser criados e destruídos rapidamente  
+- Não são pensados para armazenar estado permanente (isso é feito com volumes)  
