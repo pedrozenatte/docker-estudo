@@ -2,107 +2,178 @@
 
 Aqui teremos comandos de aulas a frente, com o objetivo de manter todos os comandos unificados
 
----
-1) Para verificar se o docker está rodando ou não (duas formas):
-- sudo service docker status
-- sudo systemctl status docker 
+# Comandos básicos do Docker
 
-OBS: "service docker 'ação'" é a maneira antiga. Hoje, utiliza-se "systemctl 'ação' docker". 
+Aqui reunimos os principais comandos do Docker, com o objetivo de manter tudo organizado em um único lugar para consulta rápida.
 
 ---
 
-2) Como iniciar o docker (caso esteja desligado) e um container:
-- sudo systemctl start docker
+1) Para verificar se o Docker está rodando (duas formas):
 
-- sudo run 'imagem'
+- sudo systemctl status docker  
+- sudo service docker status  
 
-OBS: O run cria o container e acessa fazendo algo. 
+OBS: `service` é a forma antiga. Hoje, o padrão é usar `systemctl`.
+
+---
+
+2) Como iniciar o Docker (caso esteja desligado):
+
+- sudo systemctl start docker  
+
+Para criar e executar um container:
+
+- docker run 'imagem'  
+
+OBS: `docker run` cria e executa um container a partir de uma imagem.
 
 ---
 
 3) Listar containers em execução (duas formas):
-- docker ps 
-- docker container ls
+
+- docker ps  
+- docker container ls  
 
 ---
 
-4) Verificar containers que estão parados, em stop (duas formas):
-- docker ps -a 
-- docker container ls -a
+4) Listar todos os containers (incluindo parados):
 
-Pergunta: Para que serve um container parado? 
-R: Reutilizar sem recriar tudo, ou seja, podemos simplesmente iniciar aquilo: docker start 'id_ou_nome'
+- docker ps -a  
+- docker container ls -a  
 
----
+Pergunta: Para que serve um container parado?  
+R: Permite reutilizar o container sem precisar recriar tudo.
 
-5) Listar imagens que estão no repositório local:
-- docker images
+Para iniciar novamente:
 
----
-
-6) Excluir containers parados:
-- docker rm 'ID do container' 
-Ou 
-- docker rm 'Nome do container'
-
-OBS: Para pegar o nome do container ou id do container, precisa listar eles (comando 4).
+- docker start 'id_ou_nome'  
 
 ---
 
-6) Excluir imagens do repositório local:
-- docker rmi 'Nome da imagem:latest'
+5) Listar imagens locais:
 
-OBS: latest é a TAG da imagem.
-
----
-
-7) Como parar o docker: 
-- sudo systemctl stop docker
+- docker images  
 
 ---
 
-8) Reiniciar o docker: 
-- sudo systemctl restart docker
+6) Excluir containers:
+
+- docker rm 'ID ou nome do container'  
+
+OBS: O container precisa estar parado.  
+Para forçar a remoção:
+
+- docker rm -f 'ID ou nome'  
 
 ---
 
-9) *Desabilitar na inicialização (boot):
-- sudo systemctl disable docker
+7) Excluir imagens:
+
+- docker rmi 'nome:tag'  
+
+Exemplo:
+
+- docker rmi ubuntu:latest  
+
+OBS: `latest` é a tag padrão da imagem.
 
 ---
 
-10) Excluir todos os containers (CUIDADO):
-- docker container prune
+8) Parar o Docker:
+
+- sudo systemctl stop docker  
 
 ---
 
-11) Criar container e modo iterativo:
-- docker run -it ubuntu
-Com nome específico para o container:
-- docker run --name 'nome' -it ubuntu
+9) Reiniciar o Docker:
 
-OBS: Perceba que basta utilizar a flag --name 'nome'
----
-
-12) Transformar uma imagem: 
-ATENÇÃO: Tudo que é feito dentro de um container fica salvo automaticamente, mesmo se ele parar. Porém, imagine que entramos no ubuntu (modo iterativo), instalamos python e saímos. Esse container está modificado, e podemos modificar essa imagem, de modo a 'criar' uma imagem nova, e com isso, ao instalar a imagem modificada do ubuntu, o python já vem instalado. 
-- docker commit 'nome do container' 'nome da imagem'
-
-OBS: O nome pode seguir esse formato --> nome:tag, como meu_ubuntu:v1
+- sudo systemctl restart docker  
 
 ---
 
-13) Voltar para um container: 
-- docker start -ai 'nome ou id container'
+10) Desabilitar Docker na inicialização:
 
-14) Deixar um container em backgroud:
-- docker run -di ubuntu
-- docker run -dit ubuntu
+- sudo systemctl disable docker  
 
-15) Parar um container:
-- docker stop 'nome ou id do container'
-Colocar tempo para parar:
-- docker stop -t 0 'nome/id'
+---
 
-16) Parar um container e excluir o container imediatamente:
-- docker rm -f 'nome/id'
+11) Excluir todos os containers parados (CUIDADO):
+
+- docker container prune  
+
+---
+
+12) Criar container em modo interativo:
+
+- docker run -it ubuntu  
+
+Com nome específico:
+
+- docker run --name 'nome' -it ubuntu  
+
+OBS: A flag `-it` permite interação com o terminal.
+
+---
+
+13) Criar container em background:
+
+- docker run -d ubuntu  
+- docker run -dit ubuntu  
+
+OBS: `-d` significa execução em segundo plano.
+
+---
+
+14) Parar um container:
+
+- docker stop 'nome ou id'  
+
+Parada imediata:
+
+- docker stop -t 0 'nome/id'  
+
+---
+
+15) Parar e remover um container:
+
+- docker rm -f 'nome/id'  
+
+---
+
+16) Voltar para um container:
+
+- docker start -ai 'nome ou id'  
+
+OBS: `-a` conecta ao terminal, `-i` mantém interação.
+
+---
+
+17) Criar uma nova imagem a partir de um container:
+
+- docker commit 'nome_container' 'nova_imagem:tag'  
+
+Exemplo:
+
+- docker commit meu_container meu_ubuntu:v1  
+
+OBS: Alterações feitas dentro de um container não alteram a imagem original automaticamente.  
+Elas ficam salvas naquele container e só viram uma nova imagem com `commit`.
+Imagine que entramos no ubuntu (modo iterativo), instalamos python e saímos. Esse container está modificado, e podemos modificar essa imagem, de modo a 'criar' uma imagem nova, e com isso, ao instalar a imagem modificada do ubuntu, o python já vem instalado.
+
+---
+
+18) Excluir várias imagens de uma vez:
+- docker rmi $(docker images -q)
+
+---
+
+## Observações gerais
+
+- `run` → cria e executa container  
+- `start` → inicia container parado  
+- `stop` → para container  
+- `rm` → remove container  
+- `rmi` → remove imagem  
+- `ps` → lista containers  
+
+
