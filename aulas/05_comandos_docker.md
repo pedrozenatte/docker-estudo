@@ -189,7 +189,7 @@ Imagine que entramos no ubuntu (modo iterativo), instalamos python e saímos. Es
 
 ---
 
-21) Construção de uma imagem a partir de um dockerfile
+21) Construção de uma imagem a partir de um dockerfile:
 **Quando o arquivo se chama `Dockerfile`**
 ```bash
 docker build -t minha_imagem:v1 
@@ -208,6 +208,48 @@ docker inspect 'nome/id'
 ```
 
 ---
+
+23) Como criar volumes/bind mount ligando com uma pasta do container:
+**Volumes**
+```bash
+docker run -it -v meu_volume:/dados ubuntu
+```
+
+**Bind Mount**
+```bash
+docker run -it -v /pasta/no/host:/pasta/no/container nome_da_imagem
+```
+
+OBS: Perceba que se a origem for um caminho, então é bind mount, se for só um nome, é um volume.
+
+---
+
+24) Como criar volumes:
+```bash
+docker volume create 'nome_volume'
+```
+
+OBS: Isso apenas cria o volume
+
+25) Excluir volume:
+```bash
+docker volume rm 'nome_volume'
+```
+
+26) Inspecionar um volume:
+```bash
+docker volume inspect meu_volume
+```
+
+27) Listar volumes:
+```bash
+docker volume ls
+```
+
+28) Criar uma montagem `TMPFS`: 
+```bash
+docker run -it --tmpfs=/nome-do-diretorio nome_da_imagem
+```
 
 ## Observações gerais
 

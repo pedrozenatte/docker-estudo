@@ -83,6 +83,11 @@ OBS: Também podemos criar um volume diretamente com:
 docker volume create 'nome_volume'
 ```
 
+E excluir esse volume com:
+```bash
+docker volume rm 'nome_volume'
+```
+
 #### Como acessar um volume no host?
 
 Como o volume é gerenciado pelo Docker, normalmente ele não fica em um caminho que escolhemos manualmente.
@@ -169,6 +174,23 @@ Aqui, `/home/usuario/app` é uma pasta real da máquina host.
 ### PORTANTO, atenção ao uso da flag `-v`
 
 A flag `-v` pode ser usada em diferentes contextos, mas é importante lembrar que ela trabalha com o mapeamento entre uma origem e um destino, e a forma como é feita é escrita a origem determina se é volume ou bind mount.
+
+## Persistência de dados com TMPFS
+O `tmpfs` é uma forma de montagem temporária em que os dados não são gravados no HD ou SSD. Em vez disso, eles ficam armazenados na **memória RAM** do host enquanto o container estiver em execução.
+Isso significa que o acesso costuma ser mais rápido, mas os dados são **temporários**.
+
+Em outras palavras, com `tmpfs`, os dados não são persistidos em disco: eles existem apenas em memória durante a vida útil do container.
+
+#### Como criar uma montagem `tmpfs`
+
+Para utilizar `tmpfs`, podemos usar a flag `--tmpfs` no comando `docker run`:
+
+```bash
+docker run -it --tmpfs=/nome-do-diretorio nome_da_imagem
+```
+
+**O que acontece com os dados?**
+Como os dados ficam na memória, eles não sobrevivem ao encerramento do container.
 
 
 ## Observações
