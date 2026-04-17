@@ -179,6 +179,11 @@ Imagine que entramos no ubuntu (modo iterativo), instalamos python e saímos. Es
 
 ---
 
+20) Ver as camadas de uma imagem:
+- docker history 'nome da imagem'
+
+---
+
 ## Observações gerais
 
 - `run` → cria e executa container  
