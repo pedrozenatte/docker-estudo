@@ -10,8 +10,13 @@ Aqui reunimos os principais comandos do Docker, com o objetivo de manter tudo or
 
 1) Para verificar se o Docker está rodando (duas formas):
 
-- sudo systemctl status docker  
-- sudo service docker status  
+```bash
+sudo systemctl status docker
+```  
+
+```bash
+sudo service docker status 
+``` 
 
 OBS: `service` é a forma antiga. Hoje, o padrão é usar `systemctl`.
 
@@ -19,11 +24,15 @@ OBS: `service` é a forma antiga. Hoje, o padrão é usar `systemctl`.
 
 2) Como iniciar o Docker (caso esteja desligado):
 
-- sudo systemctl start docker  
+```bash
+sudo systemctl start docker  
+```
 
 Para criar e executar um container:
 
-- docker run 'imagem'  
+```bash
+docker run 'imagem'  
+```
 
 OBS: `docker run` cria e executa um container a partir de uma imagem.
 
@@ -31,15 +40,25 @@ OBS: `docker run` cria e executa um container a partir de uma imagem.
 
 3) Listar containers em execução (duas formas):
 
-- docker ps  
-- docker container ls  
+```bash
+docker ps  
+```
+Ou
+```bash
+docker container ls  
+```
 
 ---
 
 4) Listar todos os containers (incluindo parados):
 
+```bash
 - docker ps -a  
+```
+Ou
+```bash
 - docker container ls -a  
+```
 
 OBS: Podemos verificar as camadas de read/write de um container com:
 ```bash
@@ -51,34 +70,46 @@ R: Permite reutilizar o container sem precisar recriar tudo.
 
 Para iniciar novamente:
 
-- docker start 'id_ou_nome'  
+```bash
+docker start 'id_ou_nome'  
+```
 
 ---
 
 5) Listar imagens locais:
 
-- docker images  
+```bash
+docker images  
+```
 
 ---
 
 6) Excluir containers:
 
-- docker rm 'ID ou nome do container'  
+```bash
+docker rm 'ID ou nome do container'  
+```
 
 OBS: O container precisa estar parado.  
 Para forçar a remoção:
 
+```bash
 - docker rm -f 'ID ou nome'  
+```
 
 ---
 
 7) Excluir imagens:
 
-- docker rmi 'nome:tag'  
+```bash
+docker rmi 'nome:tag'  
+```
 
 Exemplo:
 
-- docker rmi ubuntu:latest  
+```bash
+docker rmi ubuntu:latest  
+```
 
 OBS: `latest` é a tag padrão da imagem.
 
@@ -86,35 +117,47 @@ OBS: `latest` é a tag padrão da imagem.
 
 8) Parar o Docker:
 
-- sudo systemctl stop docker  
+```bash
+sudo systemctl stop docker  
+```
 
 ---
 
 9) Reiniciar o Docker:
 
-- sudo systemctl restart docker  
+```bash
+sudo systemctl restart docker  
+```
 
 ---
 
 10) Desabilitar Docker na inicialização:
 
-- sudo systemctl disable docker  
+```bash
+sudo systemctl disable docker  
+```
 
 ---
 
 11) Excluir todos os containers parados (CUIDADO):
 
-- docker container prune  
+```bash
+docker container prune  
+```
 
 ---
 
 12) Criar container em modo interativo:
 
-- docker run -it ubuntu  
+```bash
+docker run -it ubuntu  
+```
 
 Com nome específico:
 
-- docker run --name 'nome' -it ubuntu  
+```bash
+docker run --name 'nome' -it ubuntu  
+```
 
 OBS: A flag `-it` permite interação com o terminal.
 
@@ -122,8 +165,13 @@ OBS: A flag `-it` permite interação com o terminal.
 
 13) Criar container em background:
 
-- docker run -d ubuntu  
-- docker run -dit ubuntu  
+```bash
+docker run -d ubuntu  
+```
+
+```bash
+docker run -dit ubuntu  
+```
 
 OBS: `-d` significa execução em segundo plano.
 
@@ -131,39 +179,51 @@ OBS: `-d` significa execução em segundo plano.
 
 14) Parar um container:
 
-- docker stop 'nome ou id'  
+```bash
+docker stop 'nome ou id'  
+```
 
-Parada imediata:
+Parada com tempo:
 
-- docker stop -t 0 'nome/id'  
+```bash
+docker stop -t 0 'nome/id'  
+```
 
 ---
 
 15) Parar e remover um container:
 
-- docker rm -f 'nome/id'  
+```bash
+docker rm -f 'nome/id'  
+```
 
 ---
 
 16) Voltar para um container:
 **Parado:**
-- docker start -ai 'nome ou id'  
+```bash
+docker start -ai 'nome ou id'  
+```
 
 OBS: `-a` conecta ao terminal, `-i` mantém interação.
 
 **Rodando:**
 Se o container está em segundo plano, para acessar ele no terminal e de forma interativa:
-- docker exec -it nome bash
+```bash
+docker exec -it nome bash
+```
 
 ---
 
 17) Criar uma nova imagem a partir de um container:
-
-- docker commit 'nome_container' 'nova_imagem:tag'  
+```bash
+docker commit 'nome_container' 'nova_imagem:tag'  
+```
 
 Exemplo:
-
-- docker commit meu_container meu_ubuntu:v1  
+```bash
+docker commit meu_container meu_ubuntu:v1  
+```
 
 OBS: Alterações feitas dentro de um container não alteram a imagem original automaticamente.  
 Elas ficam salvas naquele container e só viram uma nova imagem com `commit`.
@@ -172,20 +232,28 @@ Imagine que entramos no ubuntu (modo iterativo), instalamos python e saímos. Es
 ---
 
 18) Excluir várias imagens de uma vez:
-- docker rmi $(docker images -q)
+```bash
+docker rmi $(docker images -q)
+```
 
 ---
 
 19) Executar um comando específico em um docker que está em segundo plano: 
-- docker exec nome apt update
+```bash
+docker exec nome apt update
+```
 
 **Para saídas mais complexas:**
-- docker exec -it nome apt update
+```bash
+docker exec -it nome apt update
+```
 
 ---
 
 20) Ver as camadas de uma imagem:
-- docker history 'nome da imagem'
+```bash
+docker history 'nome da imagem'
+```
 
 ---
 
