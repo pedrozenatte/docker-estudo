@@ -1,9 +1,5 @@
 # Comandos básicos do Docker
 
-Aqui teremos comandos de aulas a frente, com o objetivo de manter todos os comandos unificados
-
-# Comandos básicos do Docker
-
 Aqui reunimos os principais comandos do Docker, com o objetivo de manter tudo organizado em um único lugar para consulta rápida.
 
 ---
