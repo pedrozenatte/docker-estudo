@@ -41,6 +41,11 @@ OBS: `docker run` cria e executa um container a partir de uma imagem.
 - docker ps -a  
 - docker container ls -a  
 
+OBS: Podemos verificar as camadas de read/write de um container com:
+```bash
+docker ps -a -s
+```
+
 Pergunta: Para que serve um container parado?  
 R: Permite reutilizar o container sem precisar recriar tudo.
 
@@ -181,6 +186,26 @@ Imagine que entramos no ubuntu (modo iterativo), instalamos python e saímos. Es
 
 20) Ver as camadas de uma imagem:
 - docker history 'nome da imagem'
+
+---
+
+21) Construção de uma imagem a partir de um dockerfile
+**Quando o arquivo se chama `Dockerfile`**
+```bash
+docker build -t minha_imagem:v1 
+```
+
+**Quando o arquivo possui outro nome, como `nome.dockerfile`**
+```bash
+docker build -t minha_imagem:v1 -f nome.dockerfile 
+```
+
+---
+
+22) Inspecionar um Container: 
+```bash
+docker inspect 'nome/id'
+```
 
 ---
 
